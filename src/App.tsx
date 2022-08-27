@@ -4,7 +4,12 @@ import './assets/scss/index.scss';
 
 import { GameStep } from './types';
 
-import { GameBoard, MenuBoard, NamesBoard } from './components/Boards';
+import {
+  GameBoard,
+  MenuBoard,
+  NamesBoard,
+  ResultsBoard,
+} from './components/Boards';
 
 const Boards = () => {
   const [playerOne, setPlayerOne] = useState<string>('Игрок 1');
@@ -30,6 +35,8 @@ const Boards = () => {
           setStep={setStep}
         />
       );
+    case 'results':
+      return <ResultsBoard />;
     default:
       return <MenuBoard setStep={setStep} />;
   }

@@ -15,7 +15,7 @@ const ResultsBoard = () => {
 
   return (
     <div className='results'>
-      <div className='results__title'>Таблица лидеров</div>
+      <div className='results__title'>Таблица результатов</div>
       {isLoading ? (
         <Loader />
       ) : (

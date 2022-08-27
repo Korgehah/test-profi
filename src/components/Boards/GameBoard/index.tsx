@@ -10,7 +10,7 @@ import { DocumentData } from 'firebase/firestore';
 interface GameBoardProps {
   playerOne: string;
   playerTwo: string;
-  setStep: (step: GameStep) => void;
+  setStep: React.Dispatch<React.SetStateAction<GameStep>>;
 }
 
 const GameBoard = ({ playerOne, playerTwo, setStep }: GameBoardProps) => {

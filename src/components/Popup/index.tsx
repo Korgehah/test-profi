@@ -4,7 +4,7 @@ import { GameStep } from '../../types';
 import { updateDataDB } from '../../utils/updateDataDB';
 
 interface PopupProps {
-  setStep: (step: GameStep) => void;
+  setStep: React.Dispatch<React.SetStateAction<GameStep>>;
   playerOne: string;
   playerTwo: string;
   winner: string | null;

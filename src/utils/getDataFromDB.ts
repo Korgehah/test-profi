@@ -16,7 +16,7 @@ export const getDataFromDB = async (
       resultsArr.push({ name: key, score: value });
     }
 
-    setResults(resultsArr);
+    setResults(resultsArr.sort((a, b) => b.score - a.score));
   } else {
     throw new Error();
   }

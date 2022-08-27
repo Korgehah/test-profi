@@ -1,4 +1,6 @@
 .results {
+  padding: 0 15px;
+
   &__title {
     margin-bottom: 15px;
     font-size: 30px;
@@ -9,6 +11,8 @@
   &__table {
     border-radius: 5px;
     background-color: white;
+    margin-bottom: 30px;
+    min-height: 228px;
   }
 
   &__row {

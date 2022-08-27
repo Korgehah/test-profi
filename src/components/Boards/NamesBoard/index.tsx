@@ -20,7 +20,7 @@ const NamesBoard = ({
   return (
     <div className='names'>
       <label className='names__label'>
-        Введите имя игрока 1 (Х)
+        {`Введите имя игрока 1 (Х)*`}
         <input
           type='text'
           name='name'
@@ -30,7 +30,7 @@ const NamesBoard = ({
         />
       </label>
       <label className='names__label'>
-        Введите имя игрока 2 (О)
+        {`Введите имя игрока 2 (О)`}
         <input
           type='text'
           name='name'
@@ -39,6 +39,7 @@ const NamesBoard = ({
           className='names__input'
         />
       </label>
+      <span className='names__info'>*Ход начинает игрок 1</span>
       <Button onClick={() => setStep('game')}>Начать игру</Button>
     </div>
   );

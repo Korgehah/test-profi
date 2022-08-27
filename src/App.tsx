@@ -10,11 +10,16 @@ import {
   NamesBoard,
   ResultsBoard,
 } from './components/Boards';
+import { Button } from './components/Button';
 
-const Boards = () => {
+interface BoardsProps {
+  step: GameStep;
+  setStep: React.Dispatch<React.SetStateAction<GameStep>>;
+}
+
+const Boards = ({ step, setStep }: BoardsProps) => {
   const [playerOne, setPlayerOne] = useState<string>('Игрок 1');
   const [playerTwo, setPlayerTwo] = useState<string>('Игрок 2');
-  const [step, setStep] = useState<GameStep>('menu');
 
   switch (step) {
     case 'names':
@@ -43,10 +48,16 @@ const Boards = () => {
 };
 
 const App = () => {
+  const [step, setStep] = useState<GameStep>('menu');
   return (
     <div className='tic-tac-toe'>
       <h1 className='tic-tac-toe__title'>Крестики-нолики</h1>
-      <Boards />
+      <div className='tic-tac-toe__board'>
+        <Boards step={step} setStep={setStep} />
+      </div>
+      {step !== 'menu' && (
+        <Button onClick={() => setStep('menu')}>Вернуться в меню</Button>
+      )}
     </div>
   );
 };

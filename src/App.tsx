@@ -22,8 +22,6 @@ const Boards = () => {
           setStep={setStep}
         />
       );
-    case 'results':
-      return <ResultsBoard />;
     default:
       return <MenuBoard setStep={setStep} />;
   }

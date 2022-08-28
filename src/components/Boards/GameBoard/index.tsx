@@ -22,7 +22,7 @@ const GameBoard = ({ playerOne, playerTwo, setStep }: GameBoardProps) => {
   useEffect(() => {
     if (winner || (!winner && !board.includes(''))) {
       setIsPopupOpen(true);
-      setTurnIsX(!turnIsX);
+      setTurnIsX(true);
       setLastCell(NaN);
     }
   }, [winner, board]);

@@ -20,14 +20,12 @@ const GameBoard = ({ playerOne, playerTwo, setStep }: GameBoardProps) => {
   const winner = getWinner(board);
 
   useEffect(() => {
-    if (winner) {
+    if (winner || (!winner && !board.includes(''))) {
       setIsPopupOpen(true);
       setTurnIsX(!turnIsX);
+      setLastCell(NaN);
     }
-    if (!winner && !board.includes('')) {
-      setIsPopupOpen(true);
-    }
-  }, [winner]);
+  }, [winner, board]);
 
   const onClickCell = (cell: number) => {
     const copiedBoard = [...board];

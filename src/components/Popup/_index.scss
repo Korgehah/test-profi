@@ -33,4 +33,15 @@
     height: 100%;
     opacity: 0.4;
   }
+
+  &__buttons {
+    display: flex;
+    flex-direction: column;
+
+    .button {
+      &:first-child {
+        margin-bottom: 20px;
+      }
+    }
+  }
 }

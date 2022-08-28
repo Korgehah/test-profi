@@ -1,11 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Popup } from '../../Popup';
 import { Button } from '../../Button';
 
 import { GameStep } from '../../../types';
 
 import { getWinner } from '../../../utils/getWinner';
-import { DocumentData } from 'firebase/firestore';
 
 interface GameBoardProps {
   playerOne: string;
@@ -15,9 +14,17 @@ interface GameBoardProps {
 
 const GameBoard = ({ playerOne, playerTwo, setStep }: GameBoardProps) => {
   const [turnIsX, setTurnIsX] = useState<boolean>(true);
-  const [board, setBoard] = useState(Array(9).fill(''));
+  const [board, setBoard] = useState<string[]>(Array(9).fill(''));
   const [lastCell, setLastCell] = useState<number>(NaN);
+  const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
   const winner = getWinner(board);
+
+  useEffect(() => {
+    if (winner) {
+      setIsPopupOpen(true);
+      setTurnIsX(!turnIsX);
+    }
+  }, [winner]);
 
   const onClickCell = (cell: number) => {
     const copiedBoard = [...board];
@@ -40,9 +47,9 @@ const GameBoard = ({ playerOne, playerTwo, setStep }: GameBoardProps) => {
 
   return (
     <div className='game'>
-      <span className='game__player'>{`Ходит ${
-        turnIsX ? playerOne : playerTwo
-      }`}</span>
+      <span className='game__player'>
+        {!winner ? `Ходит ${turnIsX ? playerOne : playerTwo}` : 'Игра окончена'}
+      </span>
       <div className='game__field'>
         {board.map((cell, index) => (
           <div
@@ -57,12 +64,14 @@ const GameBoard = ({ playerOne, playerTwo, setStep }: GameBoardProps) => {
       <Button onClick={cancellTurn} disabled={!(lastCell + 1) ? true : false}>
         Отменить ход
       </Button>
-      {(!board.includes('') || winner) && (
+      {isPopupOpen && (
         <Popup
           setStep={setStep}
           playerOne={playerOne}
           playerTwo={playerTwo}
           winner={winner}
+          setBoard={setBoard}
+          setIsPopupOpen={setIsPopupOpen}
         />
       )}
     </div>

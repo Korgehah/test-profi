@@ -24,6 +24,9 @@ const GameBoard = ({ playerOne, playerTwo, setStep }: GameBoardProps) => {
       setIsPopupOpen(true);
       setTurnIsX(!turnIsX);
     }
+    if (!winner && !board.includes('')) {
+      setIsPopupOpen(true);
+    }
   }, [winner]);
 
   const onClickCell = (cell: number) => {

@@ -56,7 +56,9 @@ const GameBoard = ({ playerOne, playerTwo, setStep }: GameBoardProps) => {
       <div className='game__field'>
         {board.map((cell, index) => (
           <div
-            className='game__cell'
+            className={`game__cell ${
+              cell === 'x' ? '--blue' : cell === 'o' ? '--red' : ''
+            }`}
             onClick={() => onClickCell(index)}
             key={index}
           >
